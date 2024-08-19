@@ -10,28 +10,26 @@ The project is organized as a Quarto website, with the following structure:
 
 ```text
 accident-prediction/
-├── index.qmd
-├── 01-introduction.qmd
-├── 02-data-exploration.qmd
-├── 03-methodology.qmd
-├── 04-results.qmd
-├── 05-conclusion.qmd
+├── introduction.qmd
+├── data-exploration.qmd
+├── methodology.qmd
+├── results.qmd
+├── conclusion.qmd
 └── _quarto.yml
 ```
 
 ### Files and Directories
 
-- **index.qmd**: The homepage of the project website.
-- **01-introduction.qmd**: Provides an introduction to the study, including background, justification, and model selection.
-- **02-data-exploration.qmd**: Contains an initial exploration of the dataset, including summary statistics and visualizations.
-- **03-methodology.qmd**: Describes the methodology used, including data cleaning, feature engineering, and model selection.
-- **04-results.qmd**: Presents the results of the predictive modeling, including performance metrics and key findings.
-- **05-conclusion.qmd**: Concludes the study with a summary of findings and implications for road safety.
+- **introduction.qmd**: Provides an introduction to the study, including background, justification, and model selection.
+- **data-exploration.qmd**: Contains an initial exploration of the dataset, including summary statistics and visualizations.
+- **methodology.qmd**: Describes the methodology used, including data cleaning, feature engineering, and model selection.
+- **results.qmd**: Presents the results of the predictive modeling, including performance metrics and key findings.
+- **conclusion.qmd**: Concludes the study with a summary of findings and implications for road safety.
 - **_quarto.yml**: Configuration file for the Quarto website.
 
 ## Dataset
 
-The dataset used in this study contains 25,610 records of traffic accidents in Barranquilla, with the following columns:
+The [dataset](https://www.datos.gov.co/Transporte/Vista-accidentalidad-en-Barranquilla/k8aj-dad3) used in this study contains 25,610 records of traffic accidents in Barranquilla, with the following columns:
 
 - `FECHA_ACCIDENTE`: Date of the accident
 - `HORA_ACCIDENTE`: Time of the accident
@@ -56,13 +54,13 @@ To build and view the Quarto website locally:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/yourusername/accident-prediction.git
+   git clone https://github.com/neisser/baqapp.git
    ```
 
 2. Navigate to the project directory:
 
    ```bash
-   cd accident-prediction
+   cd baqapp
    ```
 
 3. Install Quarto (if not already installed). Instructions can be found [here](https://quarto.org/docs/get-started/).
