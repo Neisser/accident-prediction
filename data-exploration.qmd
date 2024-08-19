@@ -1,0 +1,31 @@
+---
+title: "baqapp - Data Exploration"
+---
+
+# Data Exploration (TODO)
+
+The dataset consists of 25,610 records with the following columns:
+
+- `FECHA_ACCIDENTE`: Date of the accident
+- `HORA_ACCIDENTE`: Time of the accident
+- `GRAVEDAD_ACCIDENTE`: Severity of the accident
+- `CLASE_ACCIDENTE`: Type of accident
+- `SITIO_EXACTO_ACCIDENTE`: Exact location of the accident
+- `CANT_HERIDOS_EN_SITIO_ACCIDENTE`: Number of injured at the accident site
+- `CANT_MUERTOS_EN_SITIO_ACCIDENTE`: Number of fatalities at the accident site
+- `CANTIDAD_ACCIDENTES`: Number of accidents
+- `AÑO_ACCIDENTE`: Year of the accident
+- `MES_ACCIDENTE`: Month of the accident
+- `DIA_ACCIDENTE`: Day of the week of the accident
+
+## Summary Statistics
+
+\```{python}
+# Add code to display summary statistics
+\```
+
+## Data Visualization
+
+\```{python}
+# Add code for visualizations (e.g., histograms, bar charts)
+\```

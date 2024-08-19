@@ -1,0 +1,12 @@
+---
+title: "baqapp - Methodology"
+---
+
+# Methodology (TODO)
+
+In this study, we employed various techniques to explore and model the accident data. The steps include:
+
+1. **Data Cleaning:** Handling missing values, inconsistencies, and formatting issues.
+2. **Feature Engineering:** Creating new features or modifying existing ones to improve the model's predictive power.
+3. **Modeling:** Implementing predictive models such as logistic regression, decision trees, or machine learning algorithms.
+4. **Evaluation:** Assessing model performance using metrics like accuracy, precision, recall, and F1-score.

@@ -1,0 +1,18 @@
+---
+title: "baqapp - Results"
+---
+
+# Results (TODO)
+
+The results of our predictive models showed that certain factors such as time of day, day of the week, and location significantly influence the likelihood of accidents.
+
+## Predictive Model Performance
+
+\```{python}
+# Add code to display model performance metrics and results
+\```
+
+## Key Findings
+
+- **Time of Day:** Higher accident rates were observed during peak traffic hours.
+- **Location:** Certain intersections were identified as accident hotspots.

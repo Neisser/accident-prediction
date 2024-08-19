@@ -4,11 +4,20 @@ project:
 
 website:
   title: "baqapp"
-  navbar:
-    left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - text: Introduction
+        href: index.qmd
+      - text: "Data Exploration (TODO)"
+        href: data-exploration.qmd
+      - text: "Methodology (TODO)"
+        href: methodology.qmd
+      - text: "Results (TODO)"
+        href: results.qmd
+      - text: "Conclusion (TODO)"
+        href: conclusion.qmd
 
 format:
   html:

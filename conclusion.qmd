@@ -1,0 +1,7 @@
+---
+title: "baqapp - Conclusion"
+---
+
+# Conclusion (TODO)
+
+This research provides valuable insights into the factors contributing to accidents in Barranquilla. By predicting potential accident hotspots and times, city planners and authorities can implement targeted interventions to reduce accidents and improve road safety.

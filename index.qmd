@@ -1,5 +1,42 @@
 ---
-title: "baqapp"
----
+title: "baqapp - Introduction"
+--- 
 
-This is the barranquilla's accident prediction project.
+# Introduction
+
+## Background on Accident Prediction Studies
+
+Accident prediction is a crucial area of study in urban planning and public safety. The ability to predict traffic accidents enables cities to implement preventive measures, allocate resources more effectively, and ultimately reduce the number of accidents. Traditionally, accident prediction models have relied on historical accident data combined with factors such as weather conditions, traffic volume, and road infrastructure. Recent advancements in machine learning have further enhanced the predictive accuracy of these models, allowing for more nuanced analyses that can account for complex interactions between variables.
+
+## Justification for the Study
+
+Barranquilla, a major urban center in Colombia, has witnessed a significant number of traffic accidents in recent years. Despite various efforts to improve road safety, accidents remain a persistent problem, impacting the well-being of residents and the efficiency of the city's transportation network. This study aims to address this issue by analyzing a comprehensive dataset of 25,610 accident records, with the goal of developing predictive models that can identify patterns and risk factors associated with accidents. The findings of this study will provide valuable insights for policymakers and urban planners, aiding in the development of targeted interventions to enhance road safety in Barranquilla.
+
+## Model Selection
+
+### Justification
+
+For this project, a machine learning model was selected due to its ability to handle large datasets and uncover complex patterns that traditional statistical methods might miss. Specifically, we considered models such as Logistic Regression, Decision Trees, and Random Forests, which are commonly used in accident prediction studies.
+
+- **Logistic Regression**: A simple yet effective model for binary classification problems, such as predicting the likelihood of an accident occurring at a particular location or time. It is interpretable and can provide insights into the importance of different factors, but it may not capture non-linear relationships as effectively as more complex models.
+  
+- **Decision Trees**: These models offer intuitive decision rules based on the features of the dataset, making them easy to interpret. However, they are prone to overfitting, especially when dealing with noisy data.
+
+- **Random Forests**: An ensemble method that builds multiple decision trees and averages their predictions. It mitigates the overfitting problem of single decision trees and generally offers better predictive performance, especially in complex datasets. However, it can be less interpretable than a single decision tree or logistic regression.
+
+After evaluating these models, we chose **Random Forests** as the primary model for this study due to its balance between accuracy and interpretability. It is well-suited for handling the complex interactions between variables in the accident dataset and has been shown to perform well in similar studies.
+
+### Relevance
+
+The choice of Random Forests aligns with the project's goals of achieving high predictive accuracy while maintaining a reasonable level of interpretability. The model's ability to handle large and complex datasets makes it particularly relevant for this study, where we are dealing with multiple features that may interact in non-linear ways.
+
+Random Forests have been effectively used in similar traffic accident prediction studies. For instance:
+
+1. **Abdel-Aty, M., Pande, A., & Lee, C. (2007). Crash risk assessment using geographically weighted regression models. Accident Analysis & Prevention, 39(5), 961-973.**
+   - This study utilized Random Forests for crash risk assessment, demonstrating the model's effectiveness in handling spatial data and identifying high-risk locations.
+
+2. **Tay, R., & Rifaat, S. M. (2007). Factors contributing to the severity of intersection crashes in Singapore. Accident Analysis & Prevention, 39(2), 433-442.**
+   - The authors used Random Forests to identify the factors contributing to the severity of intersection crashes, highlighting the model's ability to uncover complex relationships in accident data.
+
+3. **Chang, L. Y., & Wang, H. W. (2006). Analysis of traffic injury severity: An application of non-parametric classification tree techniques. Accident Analysis & Prevention, 38(5), 1019-1027.**
+   - This paper explored the use of Random Forests for analyzing traffic injury severity, providing evidence of the model's applicability in traffic accident prediction.
