@@ -6,7 +6,24 @@ title: "baqapp - Methodology"
 
 In this study, we employed various techniques to explore and model the accident data. The steps include:
 
-1. **Data Cleaning:** Handling missing values, inconsistencies, and formatting issues.
-2. **Feature Engineering:** Creating new features or modifying existing ones to improve the model's predictive power.
-3. **Modeling:** Implementing predictive models such as logistic regression, decision trees, or machine learning algorithms.
-4. **Evaluation:** Assessing model performance using metrics like accuracy, precision, recall, and F1-score.
+## Data Migration to BigQuery
+
+**Migration Plan:**  
+The migration process began with preprocessing the dataset, which was initially downloaded in CSV format from `Datos Abiertos de Colombia`. A critical step involved enriching the data by extracting geographic coordinates (longitude and latitude) for the provided addresses using the geopy library. This step, which involved processing over 24,000 records, was one of the most time-intensive and challenging aspects, taking approximately two weeks to complete. Once the geographic information was added, the data was prepared for upload without requiring additional transformations or schema redesign.
+
+**Execution:**  
+The execution phase involved directly uploading the processed CSV file into BigQuery. No database or data warehouse models were utilized in this process, as the focus was on retaining the original structure of the dataset. Despite its simplicity, this approach ensured the seamless transfer of enriched data into BigQuery while maintaining its integrity.
+
+## Model Preparation
+
+**Model Selection:**  
+The selected model for this task was the **Random Forest Classifier** (`RandomForestClassifier(random_state=42)`), chosen for its robustness and ability to handle non-linear patterns in the data. The features used to train the model included `latitude`, `longitude`, `hour`, `day_of_week`, and `month`, while the target variable was `accident_occurrence`. The target variable was derived by classifying dates with at least one accident as `1` and those without any accidents as `0`.
+
+**Data Preparation:**  
+To enhance the data's completeness, missing hours on dates with at least one accident were filled and assigned an `accident_occurrence` value of `0`. This imputation process resulted in a final class distribution of 185,440 records labeled as `0` and 20,492 records labeled as `1`. This balanced the dataset sufficiently for training while preserving the integrity of accident data.
+
+**Training:**  
+The dataset was split into training and testing sets, and the model was trained with default hyperparameters using the `random_state=42` seed to ensure reproducibility. The model achieved an overall **accuracy of 89.26%**, with a **ROC-AUC score of 0.7557**, indicating reasonable performance.  
+
+**Results:**  
+The model demonstrated strong performance for predicting the majority class (`0`), with a precision of 91%, recall of 97%, and an F1-score of 94%. However, the minority class (`1`) was harder to predict, with a precision of 41%, recall of 18%, and an F1-score of 24%. These results reflect an imbalance in the dataset and the challenge of detecting accidents, which are relatively rare events.

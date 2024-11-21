@@ -145,7 +145,11 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#methodology-todo" id="toc-methodology-todo" class="nav-link active" data-scroll-target="#methodology-todo">Methodology (TODO)</a></li>
+  <li><a href="#methodology-todo" id="toc-methodology-todo" class="nav-link active" data-scroll-target="#methodology-todo">Methodology (TODO)</a>
+  <ul class="collapse">
+  <li><a href="#data-migration-to-bigquery" id="toc-data-migration-to-bigquery" class="nav-link" data-scroll-target="#data-migration-to-bigquery">Data Migration to BigQuery</a></li>
+  <li><a href="#model-preparation" id="toc-model-preparation" class="nav-link" data-scroll-target="#model-preparation">Model Preparation</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
@@ -174,14 +178,26 @@ ul.task-list li input[type="checkbox"] {
 <section id="methodology-todo" class="level1">
 <h1>Methodology (TODO)</h1>
 <p>In this study, we employed various techniques to explore and model the accident data. The steps include:</p>
-<ol type="1">
-<li><strong>Data Cleaning:</strong> Handling missing values, inconsistencies, and formatting issues.</li>
-<li><strong>Feature Engineering:</strong> Creating new features or modifying existing ones to improve the model’s predictive power.</li>
-<li><strong>Modeling:</strong> Implementing predictive models such as logistic regression, decision trees, or machine learning algorithms.</li>
-<li><strong>Evaluation:</strong> Assessing model performance using metrics like accuracy, precision, recall, and F1-score.</li>
-</ol>
+<section id="data-migration-to-bigquery" class="level2">
+<h2 class="anchored" data-anchor-id="data-migration-to-bigquery">Data Migration to BigQuery</h2>
+<p><strong>Migration Plan:</strong><br>
+The migration process began with preprocessing the dataset, which was initially downloaded in CSV format from Datos Abiertos de Colombia. A critical step involved enriching the data by extracting geographic coordinates (longitude and latitude) for the provided addresses using the geopy library. This step, which involved processing over 24,000 records, was one of the most time-intensive and challenging aspects, taking approximately two weeks to complete. Once the geographic information was added, the data was prepared for upload without requiring additional transformations or schema redesign.</p>
+<p><strong>Execution:</strong><br>
+The execution phase involved directly uploading the processed CSV file into BigQuery. No database or data warehouse models were utilized in this process, as the focus was on retaining the original structure of the dataset. Despite its simplicity, this approach ensured the seamless transfer of enriched data into BigQuery while maintaining its integrity.</p>
+</section>
+<section id="model-preparation" class="level2">
+<h2 class="anchored" data-anchor-id="model-preparation">Model Preparation</h2>
+<p><strong>Model Selection:</strong><br>
+The selected model for this task was the <strong>Random Forest Classifier</strong> (<code>RandomForestClassifier(random_state=42)</code>), chosen for its robustness and ability to handle non-linear patterns in the data. The features used to train the model included <code>latitude</code>, <code>longitude</code>, <code>hour</code>, <code>day_of_week</code>, and <code>month</code>, while the target variable was <code>accident_occurrence</code>. The target variable was derived by classifying dates with at least one accident as <code>1</code> and those without any accidents as <code>0</code>.</p>
+<p><strong>Data Preparation:</strong><br>
+To enhance the data’s completeness, missing hours on dates with at least one accident were filled and assigned an <code>accident_occurrence</code> value of <code>0</code>. This imputation process resulted in a final class distribution of 185,440 records labeled as <code>0</code> and 20,492 records labeled as <code>1</code>. This balanced the dataset sufficiently for training while preserving the integrity of accident data.</p>
+<p><strong>Training:</strong><br>
+The dataset was split into training and testing sets, and the model was trained with default hyperparameters using the <code>random_state=42</code> seed to ensure reproducibility. The model achieved an overall <strong>accuracy of 89.26%</strong>, with a <strong>ROC-AUC score of 0.7557</strong>, indicating reasonable performance.</p>
+<p><strong>Results:</strong><br>
+The model demonstrated strong performance for predicting the majority class (<code>0</code>), with a precision of 91%, recall of 97%, and an F1-score of 94%. However, the minority class (<code>1</code>) was harder to predict, with a precision of 41%, recall of 18%, and an F1-score of 24%. These results reflect an imbalance in the dataset and the challenge of detecting accidents, which are relatively rare events.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->

@@ -12,12 +12,10 @@ website:
         href: index.qmd
       - text: "Data Exploration"
         href: data-exploration.qmd
-      - text: "Methodology (TODO)"
+      - text: "Methodology & Results"
         href: methodology.qmd
-      - text: "Results (TODO)"
-        href: results.qmd
-      - text: "Conclusion (TODO)"
-        href: conclusion.qmd
+      - text: "Dashboard Presentation"
+        href: dashboard.qmd
 
 format:
   html:
