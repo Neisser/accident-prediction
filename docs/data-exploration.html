@@ -35,10 +35,10 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -145,10 +145,14 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#data-exploration-todo" id="toc-data-exploration-todo" class="nav-link active" data-scroll-target="#data-exploration-todo">Data Exploration (TODO)</a>
+  <li><a href="#data-exploration" id="toc-data-exploration" class="nav-link active" data-scroll-target="#data-exploration">Data Exploration</a>
   <ul class="collapse">
+  <li><a href="#data-overview" id="toc-data-overview" class="nav-link" data-scroll-target="#data-overview">Data Overview</a></li>
   <li><a href="#summary-statistics" id="toc-summary-statistics" class="nav-link" data-scroll-target="#summary-statistics">Summary Statistics</a></li>
+  <li><a href="#exogenous-repositories" id="toc-exogenous-repositories" class="nav-link" data-scroll-target="#exogenous-repositories">Exogenous Repositories</a></li>
   <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data Visualization</a></li>
+  <li><a href="#data-cleaning" id="toc-data-cleaning" class="nav-link" data-scroll-target="#data-cleaning"><strong>Data Cleaning</strong></a></li>
+  <li><a href="#data-imputation" id="toc-data-imputation" class="nav-link" data-scroll-target="#data-imputation"><strong>Data Imputation</strong></a></li>
   </ul></li>
   </ul>
 </nav>
@@ -175,29 +179,94 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="data-exploration-todo" class="level1">
-<h1>Data Exploration (TODO)</h1>
+<section id="data-exploration" class="level1">
+<h1>Data Exploration</h1>
+<section id="data-overview" class="level2">
+<h2 class="anchored" data-anchor-id="data-overview">Data Overview</h2>
 <p>The dataset consists of 25,610 records with the following columns:</p>
+<p>The dataset comprises <code>25,610 observations</code> with the following <code>11 variables</code>:</p>
 <ul>
-<li><code>FECHA_ACCIDENTE</code>: Date of the accident</li>
-<li><code>HORA_ACCIDENTE</code>: Time of the accident</li>
-<li><code>GRAVEDAD_ACCIDENTE</code>: Severity of the accident</li>
-<li><code>CLASE_ACCIDENTE</code>: Type of accident</li>
-<li><code>SITIO_EXACTO_ACCIDENTE</code>: Exact location of the accident</li>
-<li><code>CANT_HERIDOS_EN_SITIO_ACCIDENTE</code>: Number of injured at the accident site</li>
-<li><code>CANT_MUERTOS_EN_SITIO_ACCIDENTE</code>: Number of fatalities at the accident site</li>
-<li><code>CANTIDAD_ACCIDENTES</code>: Number of accidents</li>
-<li><code>AÑO_ACCIDENTE</code>: Year of the accident</li>
-<li><code>MES_ACCIDENTE</code>: Month of the accident</li>
-<li><code>DIA_ACCIDENTE</code>: Day of the week of the accident</li>
+<li><code>Date</code>: The date of the accident.</li>
+<li><code>Hour</code>: The hour when the accident occurred.</li>
+<li><code>Severity</code>: The severity level of the accident.</li>
+<li><code>Type</code>: The type/category of the accident.</li>
+<li><code>Address</code>: The location or address where the accident occurred.</li>
+<li><code>Injured_Amount</code>: The number of injured individuals in the accident.</li>
+<li><code>Dead</code>: The number of fatalities.</li>
+<li><code>Accidents</code>: Indicates if an accident occurred (1 or 2 for multiple).</li>
+<li><code>Year</code>: The year of the accident.</li>
+<li><code>Month</code>: The month of the accident.</li>
+<li><code>Day_of_Week</code>: The day of the week when the accident occurred.</li>
+<li><code>accident_occurrence</code>: The probability of occurrence of an accident.</li>
 </ul>
+</section>
 <section id="summary-statistics" class="level2">
 <h2 class="anchored" data-anchor-id="summary-statistics">Summary Statistics</h2>
-<p>```{python} # Add code to display summary statistics ```</p>
+<ul>
+<li><p>Most accidents occur with <strong>no injuries (median Injured_Amount = 0)</strong> and <strong>no fatalities (median Dead = 0)</strong>.</p></li>
+<li><p>The highest recorded injury count is <strong>42</strong>, while fatalities go up to <strong>2</strong>.</p></li>
+<li><p>Data spans the years <strong>2018 to 2024</strong>, with most accidents likely concentrated around <strong>2020 (mean year = 2020.1)</strong>.</p></li>
+</ul>
+</section>
+<section id="exogenous-repositories" class="level2">
+<h2 class="anchored" data-anchor-id="exogenous-repositories">Exogenous Repositories</h2>
+<p><strong>Proposed External Data Sources:</strong></p>
+<ul>
+<li><p><strong>Weather Data:</strong> To analyze the impact of weather conditions (e.g., rain, fog, visibility) on accidents. Integration from services like NOAA or Weather Underground APIs can enhance accident risk modeling. This data may provides insights into accident risks due to adverse conditions</p></li>
+<li><p><strong>Traffic Volume Data:</strong> To evaluate the correlation between traffic density and accident frequency, sourced from local transport agencies or open traffic datasets. This data may helps understand peak hours or congested areas contributing to higher accident rates.</p></li>
+<li><p><strong>Road Infrastructure Data:</strong> Maps of road conditions, signals, and intersections can help identify high-risk areas. Sources could include OpenStreetMap or municipal GIS databases. This data may enables the identification of structural risk factors.</p></li>
+<li><p><strong>Geocoding Accident Locations:</strong> Extract latitude and longitude from the address column using geocoding tools like GeoPy and the Nominatim service. This allows mapping accidents spatially and linking them with location-based external data (e.g., proximity to hospitals, intersections, or high-traffic areas). This data enhances spatial analyses, facilitating the creation of accident heatmaps and integration with weather or road data</p></li>
+</ul>
 </section>
 <section id="data-visualization" class="level2">
 <h2 class="anchored" data-anchor-id="data-visualization">Data Visualization</h2>
-<p>```{python} # Add code for visualizations (e.g., histograms, bar charts) ```</p>
+<p>Let’s generate some visualizations to better understand the dataset.</p>
+<p><strong>Yearly Accidents</strong>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./assets/img/accidents-by-year.png" class="img-fluid figure-img"></p>
+<figcaption>accidents-by-year</figcaption>
+</figure>
+</div>
+<p>A bar chart of the number of accidents by year reveals that accidents peak during 2018, suggesting it have being decrementing the lastest years.</p>
+<p><strong>Correlation matrix</strong>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./assets/img/correlation-matrix.png" class="img-fluid figure-img"></p>
+<figcaption>correlation-matrix</figcaption>
+</figure>
+</div>
+<ul>
+<li><p>injured_amount and year (0.24): A weak positive correlation, indicating that as the years progress, there may be a slight increase in the number of injured individuals. This could reflect changes in reporting, traffic volume, or accident severity over time.</p></li>
+<li><p>injured_amount and dead (0.01): Almost no correlation, suggesting that the number of injuries in accidents does not directly predict fatalities.</p></li>
+<li><p>injured_amount and accidents (-0.01): No meaningful correlation, implying that the frequency of accidents is not closely tied to the number of injuries per accident.</p></li>
+<li><p>dead and other variables: Very low correlations (0.04 with year and close to 0 with others). This indicates fatalities are not strongly associated with these other factors in the dataset.</p></li>
+<li><p>accidents and all other variables: Close to zero correlations, suggesting accident frequency operates independently of other numeric factors such as injuries or year.</p></li>
+</ul>
+<p><strong>Analysis by Day of the Week</strong>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./assets/img/fatalities-by-day-of-the-week.png" class="img-fluid figure-img"></p>
+<figcaption>fatalities-by-day-of-the-week</figcaption>
+</figure>
+</div>
+<p>Fatalities appear to be evenly distributed across the days of the week, with no significant spikes or troughs. The values hover around 0 or 1 fatalities per day, with an occasional 2 fatalities. The plot suggests that fatality counts are generally low and consistent regardless of the day. This implies that the day of the week does not strongly influence the occurrence of fatalities in accidents.</p>
+<p><strong>Injuries Distribution</strong>:</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="./assets/img/distribution-of-injuries.png" class="img-fluid figure-img"></p>
+<figcaption>distribution-of-injuries</figcaption>
+</figure>
+</div>
+<p>The majority of the observations are concentrated near zero injuries, indicating that most accidents result in no or very few injuries. There is a long right tail, suggesting the occurrence of some accidents with a significantly higher number of injuries, although these are rare. There appear to be extreme cases (e.g., over 30 injuries) that are uncommon but influential in extending the range of the distribution. These cases may warrant further investigation to understand their context (e.g., mass-casualty events).</p>
+</section>
+<section id="data-cleaning" class="level2">
+<h2 class="anchored" data-anchor-id="data-cleaning"><strong>Data Cleaning</strong></h2>
+<p>During the data cleaning process, all records lacking location information, such as latitude and longitude, were removed, as spatial data is critical for predicting accidents. The dataset was narrowed to essential fields, including <code>latitude</code>, <code>longitude</code>, <code>hour</code>, <code>day_of_week</code>, and <code>month</code>, ensuring focus on the most relevant predictors. Inconsistent entries, such as invalid values for time or geographic coordinates outside Barranquilla’s bounds, were identified and eliminated. Categorical variables like <code>day_of_week</code> and <code>month</code> were numerically encoded, while continuous variables such as <code>latitude</code> and <code>longitude</code> were normalized to standardize their scale. These steps ensured a consistent and clean dataset for model training.</p>
+</section>
+<section id="data-imputation" class="level2">
+<h2 class="anchored" data-anchor-id="data-imputation"><strong>Data Imputation</strong></h2>
+<p>For data imputation, missing records for certain hours were addressed by generating entries where no accidents occurred, ensuring a balanced temporal representation. For dates with accidents but incomplete hourly data, new records were created with accident occurrence set to zero for missing hours. Additionally, a binary target variable, <code>accident_occurrence</code>, was introduced to classify records as 1 (accident occurred) or 0 (no accident occurred), simplifying the prediction problem. These techniques ensured the completeness of the dataset while reducing bias, supporting the model’s ability to learn both accident and non-accident patterns effectively.</p>
 
 
 </section>

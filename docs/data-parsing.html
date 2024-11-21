@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>baqapp - Conclusion – baqapp</title>
+<title>Get data – baqapp</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -19,6 +19,40 @@ ul.task-list li input[type="checkbox"] {
   width: 0.8em;
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 </style>
 
@@ -80,7 +114,9 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./conclusion.html">Conclusion (TODO)</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item">
+      baqapp
+      </li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -131,7 +167,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./conclusion.html" class="sidebar-item-text sidebar-link active">
+  <a href="./conclusion.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Conclusion (TODO)</span></a>
   </div>
 </li>
@@ -145,7 +181,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#conclusion-todo" id="toc-conclusion-todo" class="nav-link active" data-scroll-target="#conclusion-todo">Conclusion (TODO)</a></li>
+  <li><a href="#add-id-column" id="toc-add-id-column" class="nav-link active" data-scroll-target="#add-id-column">Add id column</a></li>
+  <li><a href="#data-column-parsing" id="toc-data-column-parsing" class="nav-link" data-scroll-target="#data-column-parsing">Data column parsing</a></li>
+  <li><a href="#save-data-modifications" id="toc-save-data-modifications" class="nav-link" data-scroll-target="#save-data-modifications">Save data modifications</a></li>
   </ul>
 </nav>
     </div>
@@ -154,7 +192,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">baqapp - Conclusion</h1>
+<h1 class="title">Get data</h1>
 </div>
 
 
@@ -171,9 +209,209 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="conclusion-todo" class="level1">
-<h1>Conclusion (TODO)</h1>
-<p>This research provides valuable insights into the factors contributing to accidents in Barranquilla. By predicting potential accident hotspots and times, city planners and authorities can implement targeted interventions to reduce accidents and improve road safety.</p>
+<div id="cell-1" class="cell" data-execution_count="60">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="cell-3" class="cell" data-execution_count="61">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'./assets/traffic_accidents_in_barranquilla-20240819.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.dtypes)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head())  </span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.describe())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>date               object
+hour               object
+severity           object
+type               object
+address            object
+injured_amount    float64
+dead              float64
+accidents           int64
+year                int64
+month              object
+day_of_week        object
+dtype: object
+                      date         hour     severity       type  \
+0  2018-01-01T00:00:00.000  01:30:00:am  Con heridos  Atropello   
+1  2018-01-01T00:00:00.000  02:00:00:pm   Solo daños     Choque   
+2  2018-01-01T00:00:00.000  04:00:00:am   Solo daños     Choque   
+3  2018-01-01T00:00:00.000  04:30:00:am   Solo daños     Choque   
+4  2018-01-01T00:00:00.000  05:20:00:pm   Solo daños     Choque   
+
+                address  injured_amount  dead  accidents  year    month  \
+0           CL 87 9H 24             1.0   NaN          1  2018  January   
+1          CL 110 CR 46             NaN   NaN          1  2018  January   
+2  AV CIRCUNVALAR CR 9G             NaN   NaN          1  2018  January   
+3        CLLE 72 CRA 29             NaN   NaN          1  2018  January   
+4       VIA 40 CALLE 75             NaN   NaN          1  2018  January   
+
+  day_of_week  
+0         Mon  
+1         Mon  
+2         Mon  
+3         Mon  
+4         Mon  
+       injured_amount        dead     accidents          year
+count     9984.000000  252.000000  25610.000000  25610.000000
+mean         1.471655    1.035714      1.000195   2020.100547
+std          1.156751    0.185946      0.013972      1.713887
+min          1.000000    1.000000      1.000000   2018.000000
+25%          1.000000    1.000000      1.000000   2019.000000
+50%          1.000000    1.000000      1.000000   2020.000000
+75%          2.000000    1.000000      1.000000   2021.000000
+max         42.000000    2.000000      2.000000   2024.000000</code></pre>
+</div>
+</div>
+<section id="add-id-column" class="level1">
+<h1>Add id column</h1>
+<div id="cell-5" class="cell" data-execution_count="62">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>df.insert(<span class="dv">0</span>, <span class="st">'id'</span>, df.index <span class="op">+</span> <span class="dv">1</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>df.insert(<span class="bu">len</span>(df.columns), <span class="st">'latitude'</span>, <span class="st">''</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>df.insert(<span class="bu">len</span>(df.columns), <span class="st">'longitude'</span>, <span class="st">''</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.head(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   id                     date         hour     severity       type  \
+0   1  2018-01-01T00:00:00.000  01:30:00:am  Con heridos  Atropello   
+1   2  2018-01-01T00:00:00.000  02:00:00:pm   Solo daños     Choque   
+2   3  2018-01-01T00:00:00.000  04:00:00:am   Solo daños     Choque   
+3   4  2018-01-01T00:00:00.000  04:30:00:am   Solo daños     Choque   
+4   5  2018-01-01T00:00:00.000  05:20:00:pm   Solo daños     Choque   
+5   6  2018-01-01T00:00:00.000  06:00:00:pm  Con heridos     Choque   
+6   7  2018-01-01T00:00:00.000  12:50:00:am  Con heridos  Atropello   
+7   8  2018-01-02T00:00:00.000  02:30:00:pm   Solo daños     Choque   
+8   9  2018-01-02T00:00:00.000  03:00:00:pm   Solo daños     Choque   
+9  10  2018-01-02T00:00:00.000  03:45:00:pm   Solo daños     Choque   
+
+                address  injured_amount  dead  accidents  year    month  \
+0           CL 87 9H 24             1.0   NaN          1  2018  January   
+1          CL 110 CR 46             NaN   NaN          1  2018  January   
+2  AV CIRCUNVALAR CR 9G             NaN   NaN          1  2018  January   
+3        CLLE 72 CRA 29             NaN   NaN          1  2018  January   
+4       VIA 40 CALLE 75             NaN   NaN          1  2018  January   
+5            CR 8 CL 41             3.0   NaN          1  2018  January   
+6     CLLE 119B CRA 11B             1.0   NaN          1  2018  January   
+7      CARRERA 25 37-42             NaN   NaN          1  2018  January   
+8          CR 51B 1D 35             NaN   NaN          1  2018  January   
+9       VIA 40  CLLE 85             NaN   NaN          1  2018  January   
+
+  day_of_week latitude longitude  
+0         Mon                     
+1         Mon                     
+2         Mon                     
+3         Mon                     
+4         Mon                     
+5         Mon                     
+6         Mon                     
+7         Tue                     
+8         Tue                     
+9         Tue                     </code></pre>
+</div>
+</div>
+</section>
+<section id="data-column-parsing" class="level1">
+<h1>Data column parsing</h1>
+<div id="cell-7" class="cell" data-execution_count="63">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>unique_severity <span class="op">=</span> df[<span class="st">'severity'</span>].unique()</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>unique_type <span class="op">=</span> df[<span class="st">'type'</span>].unique()</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>unique_month <span class="op">=</span> df[<span class="st">'month'</span>].unique()</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>unique_day_of_week <span class="op">=</span> df[<span class="st">'day_of_week'</span>].unique()</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'severity'</span>] <span class="op">=</span> pd.Categorical(df[<span class="st">'severity'</span>], categories<span class="op">=</span>unique_severity)</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'type'</span>] <span class="op">=</span> pd.Categorical(df[<span class="st">'type'</span>], categories<span class="op">=</span>unique_type)</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'month' and 'day_of_week' to categorical types</span></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'month'</span>] <span class="op">=</span> pd.Categorical(df[<span class="st">'month'</span>], unique_month)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'day_of_week'</span>] <span class="op">=</span> pd.Categorical(df[<span class="st">'day_of_week'</span>], unique_day_of_week)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'date' to datetime format</span></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'date'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'date'</span>])</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'hour' to a time format</span></span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'hour'</span>] <span class="op">=</span> pd.to_datetime(df[<span class="st">'hour'</span>], <span class="bu">format</span><span class="op">=</span><span class="st">'%I:%M:%S:%p'</span>).dt.time</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'address' to string</span></span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'address'</span>] <span class="op">=</span> df[<span class="st">'address'</span>].astype(<span class="bu">str</span>)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a><span class="co"># Convert 'injured_amount', 'dead', 'accidents', 'year' to int64 (handling NaN)</span></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'injured_amount'</span>] <span class="op">=</span> df[<span class="st">'injured_amount'</span>].fillna(<span class="dv">0</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'dead'</span>] <span class="op">=</span> df[<span class="st">'dead'</span>].fillna(<span class="dv">0</span>).astype(<span class="bu">int</span>)</span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'accidents'</span>] <span class="op">=</span> df[<span class="st">'accidents'</span>].astype(<span class="bu">int</span>)</span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>df[<span class="st">'year'</span>] <span class="op">=</span> df[<span class="st">'year'</span>].astype(<span class="bu">int</span>)</span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Check the updated DataFrame types</span></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df.dtypes)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a><span class="co"># Optionally, view the updated DataFrame</span></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>id                         int64
+date              datetime64[ns]
+hour                      object
+severity                category
+type                    category
+address                   object
+injured_amount             int64
+dead                       int64
+accidents                  int64
+year                       int64
+month                   category
+day_of_week             category
+latitude                  object
+longitude                 object
+dtype: object
+          id       date      hour     severity       type  \
+0          1 2018-01-01  01:30:00  Con heridos  Atropello   
+1          2 2018-01-01  14:00:00   Solo daños     Choque   
+2          3 2018-01-01  04:00:00   Solo daños     Choque   
+3          4 2018-01-01  04:30:00   Solo daños     Choque   
+4          5 2018-01-01  17:20:00   Solo daños     Choque   
+...      ...        ...       ...          ...        ...   
+25605  25606 2024-06-29  10:15:00  Con heridos     Choque   
+25606  25607 2024-06-30  02:00:00  Con heridos     Choque   
+25607  25608 2024-06-30  14:00:00  Con heridos     Choque   
+25608  25609 2024-06-30  17:00:00  Con muertos     Choque   
+25609  25610 2024-06-30  18:30:00  Con heridos  Atropello   
+
+                            address  injured_amount  dead  accidents  year  \
+0                       CL 87 9H 24               1     0          1  2018   
+1                      CL 110 CR 46               0     0          1  2018   
+2              AV CIRCUNVALAR CR 9G               0     0          1  2018   
+3                    CLLE 72 CRA 29               0     0          1  2018   
+4                   VIA 40 CALLE 75               0     0          1  2018   
+...                             ...             ...   ...        ...   ...   
+25605          CARRERA 42G CALLE 90               1     0          1  2024   
+25606          CALLE 116 CARRERA 38               1     0          1  2024   
+25607  CALLE 56 FRENTE AL # 8E - 48               2     0          1  2024   
+25608       CARRERA 43 CON CALLE 41               0     1          1  2024   
+25609            CARRERA 8 CALLE 49               2     0          1  2024   
+
+         month day_of_week latitude longitude  
+0      January         Mon                     
+1      January         Mon                     
+2      January         Mon                     
+3      January         Mon                     
+4      January         Mon                     
+...        ...         ...      ...       ...  
+25605     June         Sat                     
+25606     June         Sun                     
+25607     June         Sun                     
+25608     June         Sun                     
+25609     June         Sun                     
+
+[25610 rows x 14 columns]</code></pre>
+</div>
+</div>
+</section>
+<section id="save-data-modifications" class="level1">
+<h1>Save data modifications</h1>
+<div id="cell-9" class="cell" data-execution_count="64">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df.to_csv(<span class="st">'./assets/data.csv'</span>, index<span class="op">=</span><span class="va">False</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>
