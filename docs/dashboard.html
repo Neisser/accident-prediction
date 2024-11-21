@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>baqapp - Methodology – baqapp</title>
+<title>baqapp - Results – baqapp</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -80,7 +80,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./methodology.html">Methodology &amp; Results</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./dashboard.html">Dashboard Presentation</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -119,13 +119,13 @@ ul.task-list li input[type="checkbox"] {
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./methodology.html" class="sidebar-item-text sidebar-link active">
+  <a href="./methodology.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Methodology &amp; Results</span></a>
   </div>
 </li>
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./dashboard.html" class="sidebar-item-text sidebar-link">
+  <a href="./dashboard.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Dashboard Presentation</span></a>
   </div>
 </li>
@@ -139,10 +139,10 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#methodology-todo" id="toc-methodology-todo" class="nav-link active" data-scroll-target="#methodology-todo">Methodology (TODO)</a>
+  <li><a href="#results-todo" id="toc-results-todo" class="nav-link active" data-scroll-target="#results-todo">Results (TODO)</a>
   <ul class="collapse">
-  <li><a href="#data-migration-to-bigquery" id="toc-data-migration-to-bigquery" class="nav-link" data-scroll-target="#data-migration-to-bigquery">Data Migration to BigQuery</a></li>
-  <li><a href="#model-preparation" id="toc-model-preparation" class="nav-link" data-scroll-target="#model-preparation">Model Preparation</a></li>
+  <li><a href="#predictive-model-performance" id="toc-predictive-model-performance" class="nav-link" data-scroll-target="#predictive-model-performance">Predictive Model Performance</a></li>
+  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings">Key Findings</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -152,7 +152,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">baqapp - Methodology</h1>
+<h1 class="title">baqapp - Results</h1>
 </div>
 
 
@@ -169,26 +169,19 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="methodology-todo" class="level1">
-<h1>Methodology (TODO)</h1>
-<p>In this study, we employed various techniques to explore and model the accident data. The steps include:</p>
-<section id="data-migration-to-bigquery" class="level2">
-<h2 class="anchored" data-anchor-id="data-migration-to-bigquery">Data Migration to BigQuery</h2>
-<p><strong>Migration Plan:</strong><br>
-The migration process began with preprocessing the dataset, which was initially downloaded in CSV format from <code>Datos Abiertos de Colombia</code>. A critical step involved enriching the data by extracting geographic coordinates (longitude and latitude) for the provided addresses using the geopy library. This step, which involved processing over 24,000 records, was one of the most time-intensive and challenging aspects, taking approximately two weeks to complete. Once the geographic information was added, the data was prepared for upload without requiring additional transformations or schema redesign.</p>
-<p><strong>Execution:</strong><br>
-The execution phase involved directly uploading the processed CSV file into BigQuery. No database or data warehouse models were utilized in this process, as the focus was on retaining the original structure of the dataset. Despite its simplicity, this approach ensured the seamless transfer of enriched data into BigQuery while maintaining its integrity.</p>
+<section id="results-todo" class="level1">
+<h1>Results (TODO)</h1>
+<p>The results of our predictive models showed that certain factors such as time of day, day of the week, and location significantly influence the likelihood of accidents.</p>
+<section id="predictive-model-performance" class="level2">
+<h2 class="anchored" data-anchor-id="predictive-model-performance">Predictive Model Performance</h2>
+<p>```{python} # Add code to display model performance metrics and results ```</p>
 </section>
-<section id="model-preparation" class="level2">
-<h2 class="anchored" data-anchor-id="model-preparation">Model Preparation</h2>
-<p><strong>Model Selection:</strong><br>
-The selected model for this task was the <strong>Random Forest Classifier</strong> (<code>RandomForestClassifier(random_state=42)</code>), chosen for its robustness and ability to handle non-linear patterns in the data. The features used to train the model included <code>latitude</code>, <code>longitude</code>, <code>hour</code>, <code>day_of_week</code>, and <code>month</code>, while the target variable was <code>accident_occurrence</code>. The target variable was derived by classifying dates with at least one accident as <code>1</code> and those without any accidents as <code>0</code>.</p>
-<p><strong>Data Preparation:</strong><br>
-To enhance the data’s completeness, missing hours on dates with at least one accident were filled and assigned an <code>accident_occurrence</code> value of <code>0</code>. This imputation process resulted in a final class distribution of 185,440 records labeled as <code>0</code> and 20,492 records labeled as <code>1</code>. This balanced the dataset sufficiently for training while preserving the integrity of accident data.</p>
-<p><strong>Training:</strong><br>
-The dataset was split into training and testing sets, and the model was trained with default hyperparameters using the <code>random_state=42</code> seed to ensure reproducibility. The model achieved an overall <strong>accuracy of 89.26%</strong>, with a <strong>ROC-AUC score of 0.7557</strong>, indicating reasonable performance.</p>
-<p><strong>Results:</strong><br>
-The model demonstrated strong performance for predicting the majority class (<code>0</code>), with a precision of 91%, recall of 97%, and an F1-score of 94%. However, the minority class (<code>1</code>) was harder to predict, with a precision of 41%, recall of 18%, and an F1-score of 24%. These results reflect an imbalance in the dataset and the challenge of detecting accidents, which are relatively rare events.</p>
+<section id="key-findings" class="level2">
+<h2 class="anchored" data-anchor-id="key-findings">Key Findings</h2>
+<ul>
+<li><strong>Time of Day:</strong> Higher accident rates were observed during peak traffic hours.</li>
+<li><strong>Location:</strong> Certain intersections were identified as accident hotspots.</li>
+</ul>
 
 
 </section>

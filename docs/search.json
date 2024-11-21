@@ -36,7 +36,7 @@
     "section": "",
     "text": "In this study, we employed various techniques to explore and model the accident data. The steps include:\n\n\nMigration Plan:\nThe migration process began with preprocessing the dataset, which was initially downloaded in CSV format from Datos Abiertos de Colombia. A critical step involved enriching the data by extracting geographic coordinates (longitude and latitude) for the provided addresses using the geopy library. This step, which involved processing over 24,000 records, was one of the most time-intensive and challenging aspects, taking approximately two weeks to complete. Once the geographic information was added, the data was prepared for upload without requiring additional transformations or schema redesign.\nExecution:\nThe execution phase involved directly uploading the processed CSV file into BigQuery. No database or data warehouse models were utilized in this process, as the focus was on retaining the original structure of the dataset. Despite its simplicity, this approach ensured the seamless transfer of enriched data into BigQuery while maintaining its integrity.\n\n\n\nModel Selection:\nThe selected model for this task was the Random Forest Classifier (RandomForestClassifier(random_state=42)), chosen for its robustness and ability to handle non-linear patterns in the data. The features used to train the model included latitude, longitude, hour, day_of_week, and month, while the target variable was accident_occurrence. The target variable was derived by classifying dates with at least one accident as 1 and those without any accidents as 0.\nData Preparation:\nTo enhance the data’s completeness, missing hours on dates with at least one accident were filled and assigned an accident_occurrence value of 0. This imputation process resulted in a final class distribution of 185,440 records labeled as 0 and 20,492 records labeled as 1. This balanced the dataset sufficiently for training while preserving the integrity of accident data.\nTraining:\nThe dataset was split into training and testing sets, and the model was trained with default hyperparameters using the random_state=42 seed to ensure reproducibility. The model achieved an overall accuracy of 89.26%, with a ROC-AUC score of 0.7557, indicating reasonable performance.\nResults:\nThe model demonstrated strong performance for predicting the majority class (0), with a precision of 91%, recall of 97%, and an F1-score of 94%. However, the minority class (1) was harder to predict, with a precision of 41%, recall of 18%, and an F1-score of 24%. These results reflect an imbalance in the dataset and the challenge of detecting accidents, which are relatively rare events.",
     "crumbs": [
-      "Methodology (TODO)"
+      "Methodology & Results"
     ]
   },
   {
@@ -187,7 +187,7 @@
     "section": "",
     "text": "Migration Plan:\nThe migration process began with preprocessing the dataset, which was initially downloaded in CSV format from Datos Abiertos de Colombia. A critical step involved enriching the data by extracting geographic coordinates (longitude and latitude) for the provided addresses using the geopy library. This step, which involved processing over 24,000 records, was one of the most time-intensive and challenging aspects, taking approximately two weeks to complete. Once the geographic information was added, the data was prepared for upload without requiring additional transformations or schema redesign.\nExecution:\nThe execution phase involved directly uploading the processed CSV file into BigQuery. No database or data warehouse models were utilized in this process, as the focus was on retaining the original structure of the dataset. Despite its simplicity, this approach ensured the seamless transfer of enriched data into BigQuery while maintaining its integrity.",
     "crumbs": [
-      "Methodology (TODO)"
+      "Methodology & Results"
     ]
   },
   {
@@ -197,7 +197,37 @@
     "section": "",
     "text": "Model Selection:\nThe selected model for this task was the Random Forest Classifier (RandomForestClassifier(random_state=42)), chosen for its robustness and ability to handle non-linear patterns in the data. The features used to train the model included latitude, longitude, hour, day_of_week, and month, while the target variable was accident_occurrence. The target variable was derived by classifying dates with at least one accident as 1 and those without any accidents as 0.\nData Preparation:\nTo enhance the data’s completeness, missing hours on dates with at least one accident were filled and assigned an accident_occurrence value of 0. This imputation process resulted in a final class distribution of 185,440 records labeled as 0 and 20,492 records labeled as 1. This balanced the dataset sufficiently for training while preserving the integrity of accident data.\nTraining:\nThe dataset was split into training and testing sets, and the model was trained with default hyperparameters using the random_state=42 seed to ensure reproducibility. The model achieved an overall accuracy of 89.26%, with a ROC-AUC score of 0.7557, indicating reasonable performance.\nResults:\nThe model demonstrated strong performance for predicting the majority class (0), with a precision of 91%, recall of 97%, and an F1-score of 94%. However, the minority class (1) was harder to predict, with a precision of 41%, recall of 18%, and an F1-score of 24%. These results reflect an imbalance in the dataset and the challenge of detecting accidents, which are relatively rare events.",
     "crumbs": [
-      "Methodology (TODO)"
+      "Methodology & Results"
+    ]
+  },
+  {
+    "objectID": "dashboard.html",
+    "href": "dashboard.html",
+    "title": "baqapp - Results",
+    "section": "",
+    "text": "The results of our predictive models showed that certain factors such as time of day, day of the week, and location significantly influence the likelihood of accidents.\n\n\n```{python} # Add code to display model performance metrics and results ```\n\n\n\n\nTime of Day: Higher accident rates were observed during peak traffic hours.\nLocation: Certain intersections were identified as accident hotspots.",
+    "crumbs": [
+      "Dashboard Presentation"
+    ]
+  },
+  {
+    "objectID": "dashboard.html#predictive-model-performance",
+    "href": "dashboard.html#predictive-model-performance",
+    "title": "baqapp - Results",
+    "section": "",
+    "text": "```{python} # Add code to display model performance metrics and results ```",
+    "crumbs": [
+      "Dashboard Presentation"
+    ]
+  },
+  {
+    "objectID": "dashboard.html#key-findings",
+    "href": "dashboard.html#key-findings",
+    "title": "baqapp - Results",
+    "section": "",
+    "text": "Time of Day: Higher accident rates were observed during peak traffic hours.\nLocation: Certain intersections were identified as accident hotspots.",
+    "crumbs": [
+      "Dashboard Presentation"
     ]
   }
 ]
